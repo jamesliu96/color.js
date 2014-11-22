@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+    body {
+        font: normal 40px/1.5em Menlo, Monaco, Consolas, "Courier New", monospace;
+        color: #fff;
+        margin: 0;
+        background-color: #000;
+        -webkit-transition: background-color linear 0.2s;
+        -moz-transition: background-color linear 0.2s;
+        -ms-transition: background-color linear 0.2s;
+        -o-transition: background-color linear 0.2s;
+        transition: background-color linear 0.2s;
+    }
+    div {
+        position: absolute;
+        top: 45%;
+        width: 100%;
+        text-align: center;
+        -webkit-transition: color linear 0.2s;
+        -moz-transition: color linear 0.2s;
+        -ms-transition: color linear 0.2s;
+        -o-transition: color linear 0.2s;
+        transition: color linear 0.2s;
+    }
+    </style>
+</head>
+<body>
+    <div>Hello, World!</div>
+</body>
+<script type="text/javascript">
+(function() {
+    function setBGColor(r, g, b) {
+        document.getElementsByTagName("body")[0].style.backgroundColor = "rgb(" + (r || "0") + "," + (g || "0") + "," + (b || "0") + ")";
+    }
+    function setColor(r, g, b) {
+        document.getElementsByTagName("div")[0].style.color = "rgb(" + (r || "0") + "," + (g || "0") + "," + (b || "0") + ")";
+    }
+    var red, green, blue;
+    function thread() {
+        red = Math.floor(Math.random() * 256);
+        green = Math.floor(Math.random() * 256);
+        blue = Math.floor(Math.random() * 256);
+        setBGColor(red, green, blue);
+        setColor(255 - red, 255 - green, 255 - blue);
+    }
+    var counter = 6,
+        countWord = {
+            0: "",
+            1: "One",
+            2: "Two",
+            3: "Three",
+            4: "Four",
+            5: "Five",
+            6: ""
+        };
+    var countdown = setInterval(function () {
+        if (counter >= 0) {
+            document.getElementsByTagName("div")[0].innerHTML = countWord[counter--];
+        } else {
+            next();
+        }
+    }, 1000);
+    function next() {
+        document.title = "Hello, Color!";
+        document.getElementsByTagName("div")[0].innerHTML = "Hello, Color!";
+        clearInterval(countdown);
+        thread();
+        setInterval(thread, 1000);
+    }
+}());
+</script>
+</html>
